@@ -12,7 +12,7 @@ public class Main {
 		aCommandDispatcher.startUp();
 		
 		DefaultCommandWatcher aCommandWatcher = new DefaultCommandWatcher(
-			50, 
+			10, 
 			100, 
 			"183024294:AAHuN89b2c6cgLk9nURseazXeuiQD5QX9ec", 
 			aCommandDispatcher, 

@@ -10,11 +10,14 @@ public enum CommandType {
 	// Some important URL
 	URL("/url"),
 	
+	// Some important URL
+	IRJU("/irju"),
+	
 	// Zello setup instructions
-	ZELLO("/zello"),
+	ZELLO("/zello", "installe zello", "installer zello"),
 	
 	// Reswue setup instructions
-	RESWUE("/reswue"),
+	RESWUE("/reswue", "installe reswue", "installer reswue"),
 	
 	// Shuts the bot down
 	SHUTDOWN("/shutdown"),

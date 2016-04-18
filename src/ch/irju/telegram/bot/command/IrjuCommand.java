@@ -50,43 +50,37 @@ public class IrjuCommand extends AbstractCommand {
 		}
 		
 		String aText = message.getText().toLowerCase();
-
+/*
 		for (String mention : getMentions()) {
 			System.out.println(">>> " + mention);
 			return getSendMessageRequest(mention, 
-//				message.getContact().getUserId() + " vous a mentioné!", null); 
-				"xxxxxxx vous a mentioné!", null); 
+//				message.getContact().getUserId() + " vous a mention�!", null); 
+				"xxxxxxx vous a mention�!", null); 
 		}
+*/		
+		String aUsername = message.getFromUser().getUsername();
 		
 		switch (CommandType.getCommandType(aText)) {
 			case GOODBYE:
-				return getSendMessageRequest("Au revoir *" + message.getFromUser().getUsername() + "*!", "Markdown"); 
+				return getSendMessageRequest(Messages.getGoodByeMessage(aUsername), "Markdown"); 
 			case HELLO:
-				return getSendMessageRequest("Bonjour *" + message.getFromUser().getUsername() + "*!", "Markdown");
+				return getSendMessageRequest(Messages.getHelloMessage(aUsername), "Markdown");
 			case URL:
-				return getSendMessageRequest("http://www.irju.ch/", null);
+				return getSendMessageRequest(Messages.getUrlMessage(), "Markdown");
+			case IRJU:
+				return getSendMessageRequest(Messages.getIrjuMessage(), "Markdown");
 			case BURGER:
-				return getSendMessageRequest("Burger? Quelqu'un a dit burger? " 
-					+ BURGER + BURGER + BURGER 
-					+ " " + SMILING_FACE_WITH_HEART_SHAPED_EYES, null);
+				return getSendMessageRequest(Messages.getBurgerMessage(), null);
 			case ZELLO:
-				return getSendMessageRequest(getZelloSetupInstructions(), "Markdown");
+				return getSendMessageRequest(Messages.getZelloMessage(), "Markdown");
 			case RESWUE:
-				return getSendMessageRequest(getReswueSetupInstructions(), "Markdown");
+				return getSendMessageRequest(Messages.getReswueMessage(), "Markdown");
 			case HELP:
-				return getSendMessageRequest(getHelp(), "Markdown");
+				return getSendMessageRequest(Messages.getHelpMessage(), "Markdown");
 			case WHOCARES:
-				return getSendMessageRequest("On s'en bat les steaks! " +
-					FACE_WITH_TEARS_OF_JOY + 
-					FACE_WITH_TEARS_OF_JOY +
-					FACE_WITH_TEARS_OF_JOY, null);
+				return getSendMessageRequest(Messages.getWhoCaresMessages(), null);
 			case NOSHIT:
-				return getSendMessageRequest(
-					RAISED_HAND + " " + 
-					RAISED_HAND + " " + 
-					RAISED_HAND + " " + 
-					RAISED_HAND,
-					null);
+				return getSendMessageRequest(Messages.getNoShitMessage(), null);
 			case PROFILE:
 				return getSendPhotoRequest();
 			case TLDR:
@@ -111,52 +105,6 @@ public class IrjuCommand extends AbstractCommand {
 		}
 		
 		return list;
-	}
-
-	private String getHelp() {
-		StringBuilder aText = new StringBuilder();
-		aText.append("Bonjour, je suis le bot IRJU! Je suis là pour vous aider et rendre votre vie plus bleue! " 
-			+ GRINNING_FACE_WITH_SMILING_EYES + "\n\n");
-		aText.append("Voici la liste des commandes:\n\n");
-		aText.append("[/help](tg://bot_command?command=help&bot=irju) - Liste des commandes\n");
-		aText.append("[/zello](tg://bot_command?command=zello&bot=irju) - Instructions Zello\n");
-		aText.append("[/reswue](tg://bot_command?command=reswue&bot=irju) - Instructions Reswue\n\n");
-		aText.append("Je contiens plein d'autres fonctionnalités cachées... "
-			+ "à vous de les découvrir! " + SMIRKING_FACE);
-		return aText.toString();
-	}
-
-	private String getZelloSetupInstructions() {
-		StringBuilder aText = new StringBuilder();
-		aText.append("*Setup Zello*\n\n");
-		aText.append("1) Télécharger l'application ");
-		aText.append("pour [Android](https://play.google.com/store/apps/details?id=com.loudtalks&hl=fr) ");
-		aText.append("ou pour [iPhone](https://itunes.apple.com/us/app/zello-walkie-talkie/id508231856?mt=8)\n");
-		aText.append("2) Créer un compte\n\n");
-		aText.append("C'est tout! " + GRINNING_FACE_WITH_SMILING_EYES + "\n\n");
-		aText.append("Les utilisateurs Android peuvent également télécharger [Zello Overlay]"
-				+ "(https://play.google.com/store/apps/details?id=com.zachbarrett.zellooverlay&hl=fr) "
-				+ "afin de pouvoir actionner Zello depuis n'importe quelle application!");
-		return aText.toString();
-	}
-	
-	private String getReswueSetupInstructions() {
-		StringBuilder aText = new StringBuilder();
-		aText.append("*Setup Reswue*\n\n");
-		aText.append("Reswue est l'outil utilisé par la Résistance et seulement par la Résistance pour planifier "
-				+ "et notifier les agents lors d'opérations. Ce tool est confidentiel, n'en parlez donc jamais "
-				+ "aux joueurs verts!\n\n");
-		aText.append("Il vous faut obtenir une autorisation pour utiliser Reswue. Commencez par vous connecter "
-				+ "à [Reswue Europe](https://ops.irde.net/iitc/reswue/my.php) et connectez-vous grâce à votre "
-				+ "compte Google+. Puis envoyez un message à [p0c07o](https://web.telegram.org/#/im?p=@p0c07o) "
-				+ "afin qu'il vous valide!\n\n");
-		aText.append("Il existe 3 moyens d'utiliser Reswue:\n\n");
-		aText.append("1) Via l'[interface Web](https://ops.irde.net/iitc/reswue/my.php)\n");
-		aText.append("2) Via le client mobile pour [Android]"
-				+ "(https://play.google.com/store/apps/details?id=net.irde.ops.agentclient) "
-				+ "ou pour [iPhone](https://itunes.apple.com/us/app/reswue-client/id971201245?l=de&ls=1&mt=8)\n");
-		aText.append("3) Via le [plugin IITC](https://ops.irde.net/iitc/reswue.user.js﻿)");
-		return aText.toString();
 	}
 
 	private TelegramRequest getSendPhotoRequest() throws JsonParsingException {
