@@ -21,7 +21,10 @@ final class Messages {
 		aText.append("[/zello](tg://bot_command?command=zello&bot=irju) - Instructions Zello\n");
 		aText.append("[/reswue](tg://bot_command?command=reswue&bot=irju) - Instructions Reswue\n");
 		aText.append("[/irju](tg://bot_command?command=irju&bot=irju) - Infos IRJU\n");
-		aText.append("[/url](tg://bot_command?command=url&bot=irju) - Adresses importantes\n\n");
+		aText.append("[/url](tg://bot_command?command=url&bot=irju) - Adresses importantes\n");
+		aText.append("[/tldr](tg://bot_command?command=tldr&bot=irju) - Liste le contenu du TLDR\n");
+		aText.append("/tldr add Xxxxx - Ajoute le message Xxxxx à la fin du TLDR\n");
+		aText.append("/tldr remove n - Efface le message numéro n du TLDR\n\n");
 		aText.append("Je contiens plein d'autres fonctionnalités cachées... "
 			+ "à vous de les découvrir! " + SMIRKING_FACE);
 		return aText.toString();

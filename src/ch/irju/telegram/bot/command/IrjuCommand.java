@@ -59,8 +59,12 @@ public class IrjuCommand extends AbstractCommand {
 		}
 */		
 		String aUsername = message.getFromUser().getUsername();
+		Long aChatId = message.getChat().getId();
 		
 		switch (CommandType.getCommandType(aText)) {
+			case TLDR:
+				String aMessage = Tldr.processTldrCommand(aText, aChatId);
+				return getSendMessageRequest(aMessage, "Markdown"); 
 			case GOODBYE:
 				return getSendMessageRequest(Messages.getGoodByeMessage(aUsername), "Markdown"); 
 			case HELLO:
@@ -83,8 +87,6 @@ public class IrjuCommand extends AbstractCommand {
 				return getSendMessageRequest(Messages.getNoShitMessage(), null);
 			case PROFILE:
 				return getSendPhotoRequest();
-			case TLDR:
-				return null;
 //			case SHUTDOWN:
 //				System.exit(0);
 //				return null;

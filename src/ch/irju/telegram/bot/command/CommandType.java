@@ -1,11 +1,11 @@
 package ch.irju.telegram.bot.command;
 
 public enum CommandType {
-	HELLO("salut", "hello", "hallo", "bonjour", "guten tag"),
-	GOODBYE("bye", "au revoir", "tschüss", "ciao", "bonne nuit"),
-	
 	// Get some help!
 	HELP("/help"),
+	
+	// Too long didn't read!
+	TLDR("/tldr"),
 	
 	// Some important URL
 	URL("/url"),
@@ -20,12 +20,13 @@ public enum CommandType {
 	RESWUE("/reswue", "installe reswue", "installer reswue"),
 	
 	// Shuts the bot down
-	SHUTDOWN("/shutdown"),
+//	SHUTDOWN("/shutdown"),
 	
+	HELLO("salut", "hello", "hallo", "bonjour", "guten tag"),
+	GOODBYE("bye", "au revoir", "tschüss", "ciao", "bonne nuit"),
 	WHOCARES("lawson"),
 	BURGER("burger"),
 	NOSHIT("qui s'en fout"),
-	TLDR("tldr"),
 	PROFILE("profile"),
 	OTHER();
 	
@@ -35,11 +36,12 @@ public enum CommandType {
 		tokens = theTokens;
 	}
 	
-	public static CommandType getCommandType(String theCommand) {
+	public static CommandType getCommandType(String theMessage) {
 		for (CommandType aCommandType : CommandType.values()) {
 			for (String aToken : aCommandType.tokens) {
-//				if (theCommand.toLowerCase().startsWith(aToken)) {
-				if (theCommand.toLowerCase().indexOf(aToken) > -1) {
+				if (theMessage.trim().startsWith("/") && theMessage.toLowerCase().startsWith(aToken)) {
+					return aCommandType;
+				} else if (theMessage.toLowerCase().indexOf(aToken) > -1) {
 					return aCommandType;
 				}
 			}
