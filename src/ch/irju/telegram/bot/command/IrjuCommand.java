@@ -1,12 +1,6 @@
 package ch.irju.telegram.bot.command;
 
-import static ch.irju.telegram.bot.command.Emoji.BURGER;
 import static ch.irju.telegram.bot.command.Emoji.FACE_SCREAMING_IN_FEAR;
-import static ch.irju.telegram.bot.command.Emoji.FACE_WITH_TEARS_OF_JOY;
-import static ch.irju.telegram.bot.command.Emoji.GRINNING_FACE_WITH_SMILING_EYES;
-import static ch.irju.telegram.bot.command.Emoji.RAISED_HAND;
-import static ch.irju.telegram.bot.command.Emoji.SMILING_FACE_WITH_HEART_SHAPED_EYES;
-import static ch.irju.telegram.bot.command.Emoji.SMIRKING_FACE;
 import io.github.nixtabyte.telegram.jtelebot.client.RequestHandler;
 import io.github.nixtabyte.telegram.jtelebot.exception.JsonParsingException;
 import io.github.nixtabyte.telegram.jtelebot.exception.TelegramServerException;
@@ -50,20 +44,23 @@ public class IrjuCommand extends AbstractCommand {
 		}
 		
 		String aText = message.getText().toLowerCase();
-/*
-		for (String mention : getMentions()) {
-			System.out.println(">>> " + mention);
-			return getSendMessageRequest(mention, 
-//				message.getContact().getUserId() + " vous a mentioné!", null); 
-				"xxxxxxx vous a mentioné!", null); 
-		}
-*/		
+
+//		for (String mention : getMentions()) {
+//			return getForwardMessageRequest(
+//				mention,
+//				message.getChat().getId(),
+//				message.getId());
+////			return getSendMessageRequest(mention, 
+//////				message.getContact().getUserId() + " vous a mentioné!", null); 
+////				"xxxxxxx vous a mentioné!", null); 
+//		}
+	
 		String aUsername = message.getFromUser().getUsername();
 		Long aChatId = message.getChat().getId();
 		
 		switch (CommandType.getCommandType(aText)) {
 			case TLDR:
-				String aMessage = Tldr.processTldrCommand(aText, aChatId);
+				String aMessage = Tldr.processTldrCommand(message.getText(), aChatId);
 				return getSendMessageRequest(aMessage, "Markdown"); 
 			case GOODBYE:
 				return getSendMessageRequest(Messages.getGoodByeMessage(aUsername), "Markdown"); 
@@ -118,15 +115,24 @@ public class IrjuCommand extends AbstractCommand {
 			null);
 	}
 
-	private TelegramRequest getSendMessageRequest(String theUsername, String theMessage, String theParseMode) throws JsonParsingException {
-		return TelegramRequestFactory.createSendMessageRequest(
-			theUsername, 
-			theMessage, 
-			true, 
-			message.getId(), // avec le message d'origine 
-			null,
-			theParseMode);
+	private TelegramRequest getForwardMessageRequest(String theUsername, long theFromChatId, long theMessageId) {
+		String aUsername = theUsername.startsWith("@") ? theUsername : "@" + theUsername;
+		System.out.println(aUsername);
+		return TelegramRequestFactory.createForwardMessageRequest(
+			aUsername, 
+			theFromChatId, 
+			theMessageId);
 	}
+	
+//	private TelegramRequest getSendMessageRequest(String theUsername, String theMessage, String theParseMode) throws JsonParsingException {
+//		return TelegramRequestFactory.createSendMessageRequest(
+//			theUsername, 
+//			theMessage, 
+//			true, 
+//			message.getId(), // avec le message d'origine 
+//			null,
+//			theParseMode);
+//	}
 
 	private TelegramRequest getSendMessageRequest(String theMessage, String theParseMode) throws JsonParsingException {
 		return TelegramRequestFactory.createSendMessageRequest(

@@ -1,7 +1,5 @@
 package ch.irju.telegram.bot.command;
 
-import static ch.irju.telegram.bot.command.CommandType.TLDR;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
