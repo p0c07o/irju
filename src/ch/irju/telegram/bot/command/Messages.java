@@ -1,9 +1,11 @@
 package ch.irju.telegram.bot.command;
 
 import static ch.irju.telegram.bot.command.Emoji.BURGER;
+import static ch.irju.telegram.bot.command.Emoji.FACE_THROWING_A_KISS;
 import static ch.irju.telegram.bot.command.Emoji.FACE_WITH_TEARS_OF_JOY;
 import static ch.irju.telegram.bot.command.Emoji.GRINNING_FACE_WITH_SMILING_EYES;
 import static ch.irju.telegram.bot.command.Emoji.RAISED_HAND;
+import static ch.irju.telegram.bot.command.Emoji.RELIEVED_FACE;
 import static ch.irju.telegram.bot.command.Emoji.SMILING_FACE_WITH_HEART_SHAPED_EYES;
 import static ch.irju.telegram.bot.command.Emoji.SMIRKING_FACE;
 
@@ -117,5 +119,43 @@ final class Messages {
 
 	static String getGoodByeMessage(String theUsername) {
 		return "Au revoir *" + theUsername + "*!";
+	}
+
+	public static String getWhoGotASmallDickMessage() {
+		return "Un p'tit zizi? Ah, on parle de Raph apparemment! " + FACE_WITH_TEARS_OF_JOY;
+	}
+
+	public static String getDictatorMessage() {
+		return "Le seul, le vrai, l'unique dictateur, c'est Poco, notre Maître à tous! Ooooommmmm " + RELIEVED_FACE;
+	}
+
+	public static String getDredreMessage() {
+		return "Dredre? Qu'a-t'il fait encore celui-là?";
+	}
+
+	public static String getHeadquartersMessage() {
+		return "Bienvenue chez Marc-le-jeune, QG officiel de la IRJU!";
+	}
+
+	public static String getBouletMessage() {
+		return "Qui est un boulet? Raph!!! " + FACE_WITH_TEARS_OF_JOY;
+	}
+
+	public static String getIrjuBotMessage() {
+		return "Tu m'as appelé, chéri(e)? " + FACE_THROWING_A_KISS;
+	}
+
+	public static String getRoploploMessage() {
+		return "Roploploooooooo! " + GRINNING_FACE_WITH_SMILING_EYES;
+	}
+
+	public static String getCorrectedMessage(String theMessage, String theUsername) {
+		for (String aToken : Correcteur.getTokens()) {
+			if (theMessage.contains(aToken)) {
+				return theUsername + ", essaie plutôt avec *" + Correcteur.getCorrection(aToken) + "*!";
+			}
+		}
+
+		return null;
 	}
 }

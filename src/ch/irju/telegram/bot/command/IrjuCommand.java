@@ -84,9 +84,22 @@ public class IrjuCommand extends AbstractCommand {
 				return getSendMessageRequest(Messages.getNoShitMessage(), null);
 			case PROFILE:
 				return getSendPhotoRequest();
-//			case SHUTDOWN:
-//				System.exit(0);
-//				return null;
+			case SMALLDICK:
+				return getSendMessageRequest(Messages.getWhoGotASmallDickMessage(), null);
+//			case DICTATOR:
+//				return getSendMessageRequest(Messages.getDictatorMessage(), null);
+			case DREDRE:
+				return getSendMessageRequest(Messages.getDredreMessage(), null);
+			case HQ:
+				return getSendMessageRequest(Messages.getHeadquartersMessage(), null);
+			case BOULET:
+				return getSendMessageRequest(Messages.getBouletMessage(), null);
+			case IRJUBOT:
+				return getSendMessageRequest(Messages.getIrjuBotMessage(), null);
+			case ROPLOPLO:
+				return getSendMessageRequest(Messages.getRoploploMessage(), null);
+			case DICTIONARY:
+				return getSendMessageRequest(Messages.getCorrectedMessage(aText, aUsername), "Markdown");
 			case OTHER:
 			default:
 				return null;

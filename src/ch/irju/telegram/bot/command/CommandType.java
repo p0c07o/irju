@@ -28,6 +28,14 @@ public enum CommandType {
 	BURGER("burger"),
 	NOSHIT("qui s'en fout"),
 	PROFILE("profile"),
+	SMALLDICK("ptit zizi", "p'tit zizi"),
+//	DICTATOR("dictateur"),
+	DREDRE("dredre"),
+	HQ("qg irju"),
+	BOULET("boulet"),
+	IRJUBOT("irjubot", "@irju"),
+	ROPLOPLO("roploplo"),
+	DICTIONARY(Correcteur.getTokens()),
 	OTHER();
 	
 	private final String[] tokens;
